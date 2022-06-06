@@ -24,8 +24,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     environment:
-      name: dev
-      url: 'www.google.com.br'
+      name: Development
+      url: 'http://www.google.com.br'
     needs: build      
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -36,8 +36,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     environment:
-      name: prd
-      url: 'www.google.com'
+      name: Production
+      url: 'http://www.google.com'
     needs: deploy-dev
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
