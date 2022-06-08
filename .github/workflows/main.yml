@@ -32,6 +32,14 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, deploy in Dev.
+
+      - name: Display the path
+        run: |
+          import os
+          print(os.environ['PATH'])
+        shell: python        
+        
+        
   deploy-prd:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
