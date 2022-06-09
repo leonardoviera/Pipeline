@@ -43,6 +43,7 @@ jobs:
           method: 'POST'
           customHeaders: '{"Content-Type":"application/json","Accept":"application/json"}'
           data: '{"username": "${{ secrets.IICS_USER }}","password": "${{ secrets.IICS_PASSWORD }}"}'
+          
       - name: Show Response
         run: |
             echo ${{ steps.myRequest.outputs.response }}
@@ -55,5 +56,5 @@ jobs:
           url: 'https://iicssaas.requestcatcher.com/public/core/v3/pullByCommitHash'
           method: 'POST'
           customHeaders: '{"Content-Type":"application/json","Accept":"application/json","INFA-SESSION-ID":"132131321321321"}'
-          data: '{"Session-Id":"${{ fromJson(steps.myRequest.outputs.response).userInfo['sessionId'] }}","password":"","commitHash": "${{ github.sha }}" }'
+          data: '{"Session-Id": ${{ fromJson(steps.myRequest.outputs.response).userInfo['sessionId'] }},"commitHash": "${{ github.sha }}" }'
 
