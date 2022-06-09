@@ -26,3 +26,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run get list file commited
         run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+        
+      # Runs a set of commands using the runners shell
+      - name: Run get list file commited
+        run: echo Last Commited Hash ${{ github.sha }}
