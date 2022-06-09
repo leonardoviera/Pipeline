@@ -38,5 +38,5 @@ jobs:
           url: 'https://sstestpayload.requestcatcher.com/public/core/v3/pullByCommitHash'
           method: 'POST'
           customHeaders: '{"Content-Type":"application/json","Accept":"application/json","INFA-SESSION-ID":"132131321321321"}'
-          data: '{"commitHash": ${{ github.sha }} }'
+          data: '{"username":"${{ secrets.IICS_USER }}","password":"${{ secrets.IICS_PASSWORD }}","commitHash": "${{ github.sha }}" }'
 
