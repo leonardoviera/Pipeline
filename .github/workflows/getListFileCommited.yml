@@ -32,7 +32,7 @@ jobs:
         run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
         
       # Runs a set of commands using the runners shell
-      - name: Run get list file commited
+      - name: Run get last commited hash
         run: echo Last Commited Hash ${{ github.sha }}
 
       - name: Login IICS Development
