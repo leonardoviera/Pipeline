@@ -39,7 +39,7 @@ jobs:
           url: 'https://dm-us.informaticacloud.com/saas/public/core/v3/login'
           method: 'POST'
           customHeaders: '{"Content-Type":"application/json","Accept":"application/json"}'
-          data-raw: '{"username": ${{ secrets.IICS_USER }},"password": ${{ secrets.IICS_PASSWORD }}}'       
+          data-raw: '{"username": "leonardo.vieira@latampartners-dev.org","password": "HbJ6ip@vs9"}'       
         
   deploy-prd:
     # The type of runner that the job will run on
