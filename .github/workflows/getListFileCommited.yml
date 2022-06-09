@@ -30,3 +30,13 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run get list file commited
         run: echo Last Commited Hash ${{ github.sha }}
+
+      - name: Login IICS Development
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://sstestpayload.requestcatcher.com/public/core/v3/pullByCommitHash'
+          method: 'POST'
+          customHeaders: '{"Content-Type":"application/json","Accept":"application/json","INFA-SESSION-ID":"132131321321321"}'
+          data: '{"commitHash": ${{ github.sha }} }'
+
