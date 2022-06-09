@@ -45,7 +45,8 @@ jobs:
           data: '{"username": "${{ secrets.IICS_USER }}","password": "${{ secrets.IICS_PASSWORD }}"}'
       - name: Show Response
         run: |
-            echo ${{ steps.myRequest.outputs.response.userInfo.sessionId }}
+            echo ${{ steps.myRequest.outputs.response }}
+            echo Session-Id ${{ steps.myRequest.outputs.response['userInfo']['sessionId'] }}
             
       - name: Send pullByCommitHash IICS Development
         id: myRequest1
