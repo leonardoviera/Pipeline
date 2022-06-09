@@ -45,6 +45,7 @@ jobs:
         run: |
             echo ${{ steps.myRequest.outputs.response }}
             echo ${{ fromJson(steps.myRequest.outputs.response).field_you_want_to_access }}
+            echo ${{ github.event.pull_request.head.sha }}
 
   deploy-prd:
     # The type of runner that the job will run on
