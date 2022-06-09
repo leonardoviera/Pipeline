@@ -44,12 +44,9 @@ jobs:
           customHeaders: '{"Content-Type":"application/json","Accept":"application/json"}'
           data: '{"username": "${{ secrets.IICS_USER }}","password": "${{ secrets.IICS_PASSWORD }}"}'
           
-      - name: Show Response
+      - name: Get SessionID
         id: session-id
-        run: |
-            echo ${{ steps.myRequest.outputs.response }}
-            echo Session-Id: ${{ fromJson(steps.myRequest.outputs.response).userInfo['sessionId'] }}
-            echo '::set-output name=SESSION_ID::${{ fromJson(steps.myRequest.outputs.response).userInfo['sessionId'] }}'
+        run: echo '::set-output name=SESSION_ID::${{ fromJson(steps.myRequest.outputs.response).userInfo['sessionId'] }}'
             
       - name: Send pullByCommitHash IICS Development
         id: myRequest1
@@ -57,6 +54,6 @@ jobs:
         with:
           url: 'https://iicssaas.requestcatcher.com/public/core/v3/pullByCommitHash'
           method: 'POST'
-          customHeaders: '{"Content-Type":"application/json","Accept":"application/json","INFA-SESSION-ID":"132131321321321"}'
-          data: '{"Session-Id": ${{ steps.session-id.outputs.SESSION_ID }},"commitHash": "${{ github.sha }}" }'
+          customHeaders: '{"Content-Type":"application/json","Accept":"application/json","INFA-SESSION-ID":"${{ steps.session-id.outputs.SESSION_ID }}"}'
+          data: '{"commitHash": "${{ github.sha }}" }'
 
