@@ -46,7 +46,7 @@ jobs:
       - name: Show Response
         run: |
             echo ${{ steps.myRequest.outputs.response }}
-            echo Session-Id ${{ steps.myRequest.outputs.response['userInfo']['sessionId'] }}
+            echo Session-Id: ${{ fromJson(steps.myRequest.outputs.response).sessionId }}
             
       - name: Send pullByCommitHash IICS Development
         id: myRequest1
