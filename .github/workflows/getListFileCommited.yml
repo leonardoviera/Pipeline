@@ -70,22 +70,12 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             file=$(echo $file | rev)
             fileName="$(echo $file | cut -d'/' -f1 | rev)"
+            fileType="$(echo $fileName | cut -d'.' -f2)"
             echo "------------------------------------------"
             echo "Nome do Arquivo $fileName"
+            echo "Tipo do Arquivo $fileType"
             echo "------------------------------------------"
-          done
-          
-      - name: File Name v2
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            IN=$(echo $file | rev)
-            mails=$(echo $IN | tr "/" "\n")
-            echo "${mails} completed name"
-            for addr in $mails
-            do
-                echo ${addr} | rev
-            done
-          done            
+          done         
 
       - name: Open File
         run: |
