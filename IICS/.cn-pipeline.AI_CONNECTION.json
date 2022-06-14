@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "aVwr4auu76AdNY2M89qwQe",
+    "name" : "cn-pipeline",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "S5Ds0XJt93aaa-gt-29432700-2022-06-06T21:52:38.713Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "0ifaKLi4WXxesvAE2p1b2G",
+    "name" : "sc_pipeline",
+    "type" : "AI_SERVICE_CONNECTOR",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "YuHEFsWTzIf6riX-gt-28815440-2022-06-06T21:44:19.814Z::svc.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Pipeline/Pipeline GitHub Action"
+  } ]
+}
