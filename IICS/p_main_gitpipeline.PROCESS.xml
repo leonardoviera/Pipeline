@@ -4,7 +4,7 @@
       <types1:EntryId>1ESyIRJi4tciSrZ-gt-29031162-2022-06-06T21:55:30.84Z::pd.xml</types1:EntryId>
       <types1:Name>p_main_gitpipeline</types1:Name>
       <types1:MimeType>application/xml+process</types1:MimeType>
-      <types1:Description>Pacote de Teste v4</types1:Description>
+      <types1:Description>Pacote de Teste v5</types1:Description>
       <types1:AppliesTo/>
       <types1:Tags>.anonymous</types1:Tags>
       <types1:VersionLabel>1.0</types1:VersionLabel>
@@ -28,7 +28,7 @@
                   overrideAPIName="false">
             <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
             <appliesTo/>
-            <description>Pacote de Teste v4</description>
+            <description>Pacote de Teste v5</description>
             <tags>.anonymous</tags>
             <generator>Informatica Process Designer 11</generator>
             <input>
