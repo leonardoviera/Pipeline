@@ -37,8 +37,7 @@ jobs:
 
       - name: List all changed files
         run: |
-          echo "::notice file=p_main_gitpipeline.PROCESS.xml,line=1,col=5,endColumn=7::Missing semicolon"
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
-            NAME=echo $file | cut -d'.' -f1`
+            echo "::notice file=$file,line=1,col=5,endColumn=7::Missing semicolon"
           done
