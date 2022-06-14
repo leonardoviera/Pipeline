@@ -56,7 +56,8 @@ jobs:
             echo "$file was changed" 
             IN=$(echo $file | rev)
             mails=$(echo $IN | tr "/" "\n")
-            echo $mails[0]
+            $filename = $mails[0]
+            echo $filename | rev
             for addr in $mails
             do
                 echo "> [$addr]"
