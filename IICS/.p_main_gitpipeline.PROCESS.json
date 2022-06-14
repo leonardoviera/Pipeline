@@ -1,0 +1,44 @@
+{
+  "objectInfo" : {
+    "id" : "gCObPIbnDueiarTaacTGcd",
+    "name" : "p_main_gitpipeline",
+    "type" : "PROCESS",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "1ESyIRJi4tciSrZ-gt-29031162-2022-06-06T21:55:30.84Z::pd.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "Pacote de Teste v2",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    }
+  },
+  "dataFileExtension" : "xml",
+  "objectRefs" : [ {
+    "id" : "aVwr4auu76AdNY2M89qwQe",
+    "name" : "cn-pipeline",
+    "type" : "AI_CONNECTION",
+    "metadata" : {
+      "modelVersion" : {
+        "major" : 1,
+        "minor" : 0
+      },
+      "repoInfo" : {
+        "repoHandle" : "S5Ds0XJt93aaa-gt-29432700-2022-06-06T21:52:38.713Z::conn.xml"
+      },
+      "contextAttributes" : null,
+      "additionalInfo" : {
+        "description" : "",
+        "contentType" : "application/json; charset=utf-8",
+        "documentState" : "VALID"
+      }
+    },
+    "path" : "/Explore/Pipeline/Pipeline GitHub Action"
+  } ]
+}
