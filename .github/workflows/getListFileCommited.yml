@@ -38,10 +38,10 @@ jobs:
       - name: List all changed files
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            echo "$file was changed"
-            echo $file 
+            echo "$file was changed" 
+            echo $file | rev
             echo "::notice file=$file,line=1,col=5,endColumn=7::Missing semicolon"
-            IN=$file | rev
+            IN="$file"
             mails=$(echo $IN | tr "." "\n")
             for addr in $mails
             do
