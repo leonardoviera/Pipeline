@@ -68,8 +68,8 @@ jobs:
       - name: File Name v1
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            fileName="$(echo $file | cut -d'.' -f2)"
-            echo "$fileName"
+            fileName="$(echo $file | cut -d'/' -f2)"
+            echo "Nome do Arquivo $fileName"
           done
           A="$(cut -d'_' -f2 <<<'one_two_three_four_five')"
           B="$(cut -d'_' -f4 <<<'one_two_three_four_five')"
