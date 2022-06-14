@@ -69,7 +69,7 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             file=$(echo $file | rev)
-            fileName="$(echo $file | cut -d'/' -f2)"
+            fileName="$(echo $file | cut -d'/' -f1)"
             echo "------------------------------------------"
             echo "Nome do Arquivo $fileName"
             echo "------------------------------------------"
