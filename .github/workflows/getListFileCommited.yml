@@ -42,8 +42,8 @@ jobs:
             echo $file 
             echo "::notice file=$file,line=1,col=5,endColumn=7::Missing semicolon"
           done
-          IN="bla@some.com;john@home.com"
-          mails=$(echo $IN | tr ";" "\n")
+          IN="$file"
+          mails=$(echo $IN | tr "." "\n")
           for addr in $mails
           do
               echo "> [$addr]"
