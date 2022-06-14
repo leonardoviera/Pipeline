@@ -80,12 +80,6 @@ jobs:
       - name: Open File
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
-            content=$(grep -w '<types1:Description/>' $file)
-            if [ -z "$content" ]
-            then
-                  echo "\$file is empty"
-            else
-                  echo "\$file is NOT empty"
-            fi
-            
+            content=$(grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2)
+            echo $content            
           done             
