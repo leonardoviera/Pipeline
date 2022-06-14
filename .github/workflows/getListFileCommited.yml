@@ -29,7 +29,7 @@ jobs:
         
   changed-files:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
-    name: Test Description files
+    name: Validate Files
     steps:
       - uses: actions/checkout@v3
         with:
@@ -72,8 +72,21 @@ jobs:
             fileType="$(echo $fileName | cut -d'.' -f2)"
             echo "------------------------------------------"
             echo "Nome do Arquivo $fileName"
-            echo "Tipo do Arquivo $fileType"
-            echo "------------------------------------------"
+            case $fileType in
+              PROCESS)
+                echo -n "Tipo do Arquivo Processo"
+                ;;
+              AI_CONNECTION)
+                echo -n "Tipo do Arquivo Application Connection"
+                ;;
+              Italy | "San Marino" | Switzerland | "Vatican City")
+                echo -n "Italian"
+                ;;
+              *)
+                echo -n "unknown"
+                ;;
+            esac
+            echo "------------------------------------------"            
           done         
 
       - name: Validate Description
