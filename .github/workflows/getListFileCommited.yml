@@ -74,16 +74,28 @@ jobs:
             echo "Nome do Arquivo $fileName"
             case $fileType in
               PROCESS)
-                echo -n "Tipo do Arquivo Processo"
+                echo "Tipo do Arquivo Processo"
+                if [ $fileName == p_* ]
+                then
+                      echo "::notice file=$file,line=1,col=5,endColumn=7::Ivalide Name"
+                else
+                      echo "::notice file=$file,line=1,col=5,endColumn=7::Valid Name"
+                fi                
                 ;;
               AI_CONNECTION)
-                echo -n "Tipo do Arquivo Application Connection"
+                echo "Tipo do Arquivo Application Connection"
                 ;;
               Italy | "San Marino" | Switzerland | "Vatican City")
-                echo -n "Italian"
+                echo "Italian"
                 ;;
               *)
-                echo -n "unknown"
+                echo "unknown"
+                if [ $fileName == p_* ]
+                then
+                      echo "::notice file=$file,line=1,col=5,endColumn=7::Ivalide Name"
+                else
+                      echo "Descrição do arquivo $file : $content"
+                fi
                 ;;
             esac
             echo "------------------------------------------"            
