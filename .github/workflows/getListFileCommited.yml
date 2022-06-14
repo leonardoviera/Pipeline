@@ -81,5 +81,5 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             content=$(grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2)
-            echo $content            
+            echo "Descrição do arquivo $file : $content"
           done             
