@@ -85,7 +85,9 @@ jobs:
             if [ -z "$1" ]
             then
                   echo "\$1 is empty"
+                  echo "\$2 is empty"
             else
                   echo "\$1 is NOT empty"
+                  echo "\$2 is NOT empty"
             fi
           done             
