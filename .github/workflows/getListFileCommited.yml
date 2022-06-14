@@ -37,7 +37,7 @@ jobs:
 
       - name: List all changed files
         run: |
-          for file in ${{ steps.changed-files-specific.outputs.all_changed_files }}; do
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
             echo $file 
             echo "::notice file=$file,line=1,col=5,endColumn=7::Missing semicolon"
@@ -48,3 +48,17 @@ jobs:
           do
               echo "> [$addr]"
           done
+          
+        - name: Get specific changed files
+                id: changed-files-specific
+                uses: tj-actions/changed-files@v14.5
+                with:
+                  files: |
+                    Dir*\*
+
+        - name: Run step if any of the listed files above change
+                if: steps.changed-files-specific.outputs.any_changed == 'true'
+                run: |
+                  for file in ${{ steps.changed-files-specific.outputs. all_changed_files }}; do
+                    echo "$file was modified"
+                  done
