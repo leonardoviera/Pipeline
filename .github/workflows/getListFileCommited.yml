@@ -46,5 +46,6 @@ jobs:
             for addr in $mails
             do
                 echo "> [$addr]"
+                echo [$addr] | rev
             done
           done
