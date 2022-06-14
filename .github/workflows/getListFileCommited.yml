@@ -44,7 +44,6 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed" 
             echo $file | rev
-            echo "::notice file=$file,line=1,col=5,endColumn=7::Missing semicolon"
             IN=$(echo $file | rev)
             mails=$(echo $IN | tr "." "\n")
             for addr in $mails
@@ -81,5 +80,10 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             content=$(grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2)
-            echo "Descrição do arquivo $file : $content"
+            if [ -z "$var" ]
+            then
+                  echo "::notice file=$file,line=1,col=5,endColumn=7::Missing Description"
+            else
+                  echo "Descrição do arquivo $file : $content"
+            fi
           done             
