@@ -56,7 +56,8 @@ jobs:
             echo "$file was changed" 
             IN=$(echo $file | rev)
             mails=$(echo $IN | tr "/" "\n")
-            echo "${mails[0]}"
+            echo "${mails[0]} file name"
+            echo "${mails[1]} path name"
           done          
           
       - name: File Name v1
@@ -64,4 +65,17 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
             fl=file | awk -F'.' '{print $2}'
-          done           
+            echo $fl
+          done  
+          
+      - name: File Name v2
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            IN=$(echo $file | rev)
+            mails=$(echo $IN | tr "/" "\n")
+            for addr in $mails
+            do
+                echo "> [$addr]"
+                echo [$addr] | rev
+            done
+          done            
