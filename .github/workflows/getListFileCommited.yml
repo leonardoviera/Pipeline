@@ -41,7 +41,7 @@ jobs:
             echo "$file was changed" 
             echo $file | rev
             echo "::notice file=$file,line=1,col=5,endColumn=7::Missing semicolon"
-            IN="$file"
+            IN=$(echo $file | rev)
             mails=$(echo $IN | tr "." "\n")
             for addr in $mails
             do
