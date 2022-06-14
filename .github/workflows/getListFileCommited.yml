@@ -75,11 +75,11 @@ jobs:
             case $fileType in
               PROCESS)
                 echo "Tipo do Arquivo Processo"
-                if [ $fileName == p_* ]
+                if [ $fileType == p_* ]
                 then
-                      echo "::notice file=$file,line=1,col=5,endColumn=7::Ivalide Name"
-                else
                       echo "::notice file=$file,line=1,col=5,endColumn=7::Valid Name"
+                else
+                      echo "::notice file=$file,line=1,col=5,endColumn=7::Invalid Name"
                 fi                
                 ;;
               AI_CONNECTION)
@@ -90,11 +90,11 @@ jobs:
                 ;;
               *)
                 echo "unknown"
-                if [ $fileName == p_* ]
+                if [ $fileType == p_* ]
                 then
-                      echo "::notice file=$file,line=1,col=5,endColumn=7::Ivalide Name"
+                      echo "::notice file=$file,line=1,col=5,endColumn=7::Valid Name"
                 else
-                      echo "Descrição do arquivo $file : $content"
+                      echo "::notice file=$file,line=1,col=5,endColumn=7::Inalid Name"
                 fi
                 ;;
             esac
