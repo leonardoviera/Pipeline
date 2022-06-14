@@ -40,4 +40,5 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
             echo "$file" | cut -d'.' -f1
+            NAME=`echo "$FILE" | cut -d'.' -f1`
           done
