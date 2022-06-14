@@ -75,7 +75,7 @@ jobs:
             case $fileType in
               PROCESS)
                 echo "Tipo do Arquivo Processo"
-                if [ [[ "$fileName" =~ ^p_* ]] ]
+                if [[ "$fileName" == p_* ]]
                 then
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
                 else
