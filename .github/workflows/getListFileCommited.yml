@@ -59,7 +59,7 @@ jobs:
             echo "${mails[0]}"
           done          
           
-      - name: List files Name
+      - name: File Name v1
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
