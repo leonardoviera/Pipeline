@@ -54,9 +54,9 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed" 
-            echo $file | rev
             IN=$(echo $file | rev)
             mails=$(echo $IN | tr "/" "\n")
+            echo $mails[0]
             for addr in $mails
             do
                 echo "> [$addr]"
