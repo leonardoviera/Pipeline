@@ -4,7 +4,11 @@ name: CI-List-File
 
 # Controls when the workflow will run
 on:
-  pull_request:
+  push:
+    branches:
+      - development
+    paths:
+      - "IICS"
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -56,9 +60,10 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed" 
             IN=$(echo $file | rev)
-            mails=$(echo $IN | tr "/" "\n")
+            mails=$($IN | tr "/" "\n")
             echo "${mails[0]} file name"
             echo "${mails[1]} path name"
+            echo "${mails[2]} extensio"
           done          
           
       - name: File Name v1
@@ -78,6 +83,7 @@ jobs:
             do
                 echo "> [$addr]"
                 echo [$addr] | rev
+                echo ${addr}
             done
           done            
 
