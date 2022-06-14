@@ -29,7 +29,7 @@ jobs:
         
   changed-files:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
-    name: Test changed-files
+    name: Test Description files
     steps:
       - uses: actions/checkout@v3
         with:
@@ -76,7 +76,7 @@ jobs:
             echo "------------------------------------------"
           done         
 
-      - name: Open File
+      - name: Validate Description
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             content=$(grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2)
