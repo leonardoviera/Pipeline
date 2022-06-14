@@ -82,12 +82,11 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2
             content=$(grep -w '<types1:Description/>' $file)
-            echo "Descrição - $content"
-            if grep -Fxq '<types1:Description/>' $file
+            if [ -z "$content" ]
             then
-                echo "$file is empty"
+                  echo "\$file is empty"
             else
-                echo "$file is NOT empty"
+                  echo "\$file is NOT empty"
             fi
             
           done             
