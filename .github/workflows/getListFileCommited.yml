@@ -69,7 +69,7 @@ jobs:
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             myUser=$(who am i | awk '{print $1}')
-            printf "%s\n" "$myUser"
+            printf "\n" "$myUser"
           done  
           
       - name: File Name v2
@@ -77,6 +77,7 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             IN=$(echo $file | rev)
             mails=$(echo $IN | tr "/" "\n")
+            echo "${mails} completed name"
             for addr in $mails
             do
                 echo ${addr} | rev
