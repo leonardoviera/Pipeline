@@ -120,6 +120,6 @@ jobs:
                   echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
                   (( count++ ))
             fi
-          echo "" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
           done        
           echo "$count" >> $GITHUB_STEP_SUMMARY
