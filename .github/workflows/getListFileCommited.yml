@@ -78,9 +78,10 @@ jobs:
                 if [[ "$fileName" == p_* ]]
                 then
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
+                      echo "$fileName :rocket:" >> $GITHUB_STEP_SUMMARY
                 else
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
-                      echo "## $fileName! :rocket:" >> $GITHUB_STEP_SUMMARY
+                      echo "$fileName" >> $GITHUB_STEP_SUMMARY
                       echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY    
                 fi                
                 ;;
@@ -111,7 +112,7 @@ jobs:
             if [ -z "$content" ]
             then
                   echo "::warning file=$file,line=1,col=5,endColumn=7::Missing Description"
-                  echo "# Missing Description!" >> $GITHUB_STEP_SUMMARY
+                  echo "$file" >> $GITHUB_STEP_SUMMARY
                   echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
             else
                   echo "Descrição do arquivo $file : $content"
