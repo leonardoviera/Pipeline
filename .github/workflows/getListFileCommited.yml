@@ -86,7 +86,7 @@ jobs:
                 fi                
                 ;;
               AI_CONNECTION)
-                if [[ "$fileName" == cn-* ]]
+                if [[ "$fileName" != cn-* ]]
                 then
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
                 else
@@ -114,10 +114,10 @@ jobs:
                   echo "::warning file=$file,line=1,col=5,endColumn=7::Missing Description"
                   echo "$file" >> $GITHUB_STEP_SUMMARY
                   echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
-            else
-                  echo "Descrição do arquivo $file : $content"
             fi
+          echo "" >> $GITHUB_STEP_SUMMARY
           done
+          
       - name: Generate list using Markdown
         run: |          
           echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
