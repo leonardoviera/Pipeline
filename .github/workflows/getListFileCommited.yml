@@ -25,7 +25,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: exit 1
+        run: echo Hello, world!
         
   changed-files:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
