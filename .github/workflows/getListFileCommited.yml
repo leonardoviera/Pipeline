@@ -66,6 +66,7 @@ jobs:
           done          
       - name: Validate File Name
         run: |
+          count=0
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             file=$(echo $file | rev)
             fileName="$(echo $file | cut -d'/' -f1 | rev)"
@@ -80,6 +81,7 @@ jobs:
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
                       echo "$fileName" >> $GITHUB_STEP_SUMMARY
                       echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY
+                      (( count++ ))
                 fi                
                 ;;
               AI_CONNECTION)
@@ -88,6 +90,7 @@ jobs:
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
                       echo "$fileName" >> $GITHUB_STEP_SUMMARY
                       echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY
+                      (( count++ ))
                 fi                
                 ;;
               AI_SERVICE_CONNECTOR)
@@ -96,12 +99,14 @@ jobs:
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
                       echo "$fileName" >> $GITHUB_STEP_SUMMARY
                       echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY
+                      (( count++ ))
                 fi
                 ;;
             esac
             echo "------------------------------------------"
             echo "" >> $GITHUB_STEP_SUMMARY
-          done         
+          done
+          echo "$count" >> $GITHUB_STEP_SUMMARY
 
       - name: Validate Description
         run: |
