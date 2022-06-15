@@ -25,7 +25,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: exit 1
         
   changed-files:
     runs-on: ubuntu-latest  # windows-latest | macos-latest
@@ -52,7 +52,6 @@ jobs:
                 echo [$addr] | rev
             done
           done
-          exit 1
       - name: Disable workflow commands
         run: |
           echo '::warning:: This is a warning message, to demonstrate that commands are being processed.'
