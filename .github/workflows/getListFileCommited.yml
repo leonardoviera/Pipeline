@@ -38,9 +38,10 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v22.2
-
+    
       - name: List all changed files
         run: |
+          echo "### Go to Deployment! :construction:" >> $GITHUB_STEP_SUMMARY
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed" 
             echo $file | rev
@@ -63,7 +64,7 @@ jobs:
             echo "${mails[1]} path name"
             echo "${mails[2]} extensio"
           done          
-      - name: File Name v1
+      - name: File Name
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             file=$(echo $file | rev)
@@ -110,14 +111,14 @@ jobs:
             if [ -z "$content" ]
             then
                   echo "::warning file=$file,line=1,col=5,endColumn=7::Missing Description"
+                  echo "# Missing Description!" >> $GITHUB_STEP_SUMMARY
                   echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
             else
                   echo "Descrição do arquivo $file : $content"
             fi
           done
       - name: Generate list using Markdown
-        run: |
-          echo "### Go to Deployment! :construction:" >> $GITHUB_STEP_SUMMARY
+        run: |          
           echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
           echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
