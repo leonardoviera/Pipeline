@@ -1,0 +1,53 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-List-File
+
+# Controls when the workflow will run
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: Development
+      url: 'https://iicssaas.requestcatcher.com/'
+      
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+        
+      # Runs a set of commands using the runners shell
+      - name: Run get last commited hash
+        run: echo Last Commited Hash ${{ github.sha }}
+
+      - name: Login IICS Development
+        id: myRequest
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: 'https://dm-us.informaticacloud.com/saas/public/core/v3/login'
+          method: 'POST'
+          customHeaders: '{"Content-Type":"application/json","Accept":"application/json"}'
+          data: '{"username": "${{ secrets.IICS_USER }}","password": "${{ secrets.IICS_PASSWORD }}"}'
+          
+      - name: Get Parameters
+        id: session-id
+        run: |
+            echo '::set-output name=SESSION_ID::${{ fromJson(steps.myRequest.outputs.response).userInfo['sessionId'] }}'
+            echo '::set-output name=BASE_URL::${{ fromJson(steps.myRequest.outputs.response).products[0]['baseApiUrl'] }}'
+            
+      - name: Send pullByCommitHash IICS Development
+        id: myRequest1
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: '${{ steps.session-id.outputs.BASE_URL }}/public/core/v3/pullByCommitHash'
+          method: 'POST'
+          customHeaders: '{"Content-Type":"application/json","Accept":"application/json","INFA-SESSION-ID":"${{ steps.session-id.outputs.SESSION_ID }}"}'
+          data: '{"commitHash": "4b024044aea7d51467ad66f584d4710f378fd410"}'
+
