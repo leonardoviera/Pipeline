@@ -63,7 +63,6 @@ jobs:
             echo "${mails[1]} path name"
             echo "${mails[2]} extensio"
           done          
-          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
       - name: File Name v1
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
@@ -80,7 +79,8 @@ jobs:
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
                 else
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
-                      echo "### $fileName! :rocket:" >> $GITHUB_STEP_SUMMARY
+                      echo "## $fileName! :rocket:" >> $GITHUB_STEP_SUMMARY
+                      echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY    
                 fi                
                 ;;
               AI_CONNECTION)
@@ -110,12 +110,14 @@ jobs:
             if [ -z "$content" ]
             then
                   echo "::warning file=$file,line=1,col=5,endColumn=7::Missing Description"
+                  echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
             else
                   echo "Descrição do arquivo $file : $content"
             fi
           done
       - name: Generate list using Markdown
         run: |
+          echo "### Go to Deployment! :construction:" >> $GITHUB_STEP_SUMMARY
           echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY # this is a blank line
           echo "- Lets add a bullet point" >> $GITHUB_STEP_SUMMARY
