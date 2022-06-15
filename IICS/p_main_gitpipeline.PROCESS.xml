@@ -28,7 +28,7 @@
                   overrideAPIName="false">
             <parameterSet xmlns="http://schemas.active-endpoints.com/appmodules/screenflow/2021/04/taskflowModel.xsd"/>
             <appliesTo/>
-            <description>Pacote de Teste v</description>
+            <description>Pacote de Teste v6</description>
             <tags>.anonymous</tags>
             <generator>Informatica Process Designer 11</generator>
             <input>
