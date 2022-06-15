@@ -49,5 +49,5 @@ jobs:
           url: '${{ steps.session-id.outputs.BASE_URL }}/public/core/v3/pullByCommitHash'
           method: 'POST'
           customHeaders: '{"Content-Type":"application/json","Accept":"application/json","INFA-SESSION-ID":"${{ steps.session-id.outputs.SESSION_ID }}"}'
-          data: '{"commitHash": "4b024044aea7d51467ad66f584d4710f378fd410"}'
+          data: '{"commitHash": "1613e551d52123e69357ac72ec4b3abc9adf3942"}'
 
