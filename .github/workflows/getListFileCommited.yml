@@ -110,7 +110,6 @@ jobs:
 
       - name: Validate Description
         run: |
-          counted=0
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             content=$(grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2)
             if [ -z "$content" ]
@@ -118,8 +117,6 @@ jobs:
                   echo "::warning file=$file,line=1,col=5,endColumn=7::Missing Description"
                   echo "$file" >> $GITHUB_STEP_SUMMARY
                   echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
-                  (( counted++ ))
             fi
             echo "" >> $GITHUB_STEP_SUMMARY
-          done        
-          echo "$counted" >> $GITHUB_STEP_SUMMARY
+          done
