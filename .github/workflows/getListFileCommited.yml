@@ -102,12 +102,9 @@ jobs:
                 fi
                 ;;
             esac
-            echo "------------------------------------------"            
-          done         
-
-      - name: Validate Description
-        run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "------------------------------------------"
+            echo "" >> $GITHUB_STEP_SUMMARY
+            
             content=$(grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2)
             if [ -z "$content" ]
             then
@@ -115,5 +112,5 @@ jobs:
                   echo "$file" >> $GITHUB_STEP_SUMMARY
                   echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
             fi
-          echo "" >> $GITHUB_STEP_SUMMARY
-          done        
+          echo "" >> $GITHUB_STEP_SUMMARY            
+          done    
