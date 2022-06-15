@@ -52,11 +52,15 @@ jobs:
                 echo [$addr] | rev
             done
           done
+
       - name: Disable workflow commands
         run: |
           echo '::warning:: This is a warning message, to demonstrate that commands are being processed.'
           stopMarker=$(uuidgen)
           echo "::stop-commands::$stopMarker"
+          echo '::warning:: This will NOT be rendered as a warning, because stop-commands has been invoked.'
+          echo "::$stopMarker::"
+          echo '::warning:: This is a warning again, because stop-commands has been turned off.'
           
       - name: List files Name
         run: |
@@ -67,7 +71,7 @@ jobs:
             echo "${mails[0]} file name"
             echo "${mails[1]} path name"
             echo "${mails[2]} extensio"
-          done
+          done          
       - name: File Name v1
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
@@ -84,6 +88,7 @@ jobs:
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
                 else
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
+                      echo "### $fileName :rocket:" >> $GITHUB_STEP_SUMMARY
                 fi                
                 ;;
               AI_CONNECTION)
