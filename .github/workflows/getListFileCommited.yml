@@ -64,7 +64,7 @@ jobs:
             echo "${mails[1]} path name"
             echo "${mails[2]} extensio"
           done          
-      - name: File Name
+      - name: Validate File Name
         run: |
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             file=$(echo $file | rev)
@@ -77,34 +77,35 @@ jobs:
                 echo "Tipo do Arquivo Processo"
                 if [[ "$fileName" != p_* ]]
                 then
-                      echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
-                      echo "$fileName :rocket:" >> $GITHUB_STEP_SUMMARY
-                else
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
                       echo "$fileName" >> $GITHUB_STEP_SUMMARY
-                      echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY    
+                      echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY
                 fi                
                 ;;
               AI_CONNECTION)
                 if [[ "$fileName" != cn-* ]]
                 then
-                      echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
-                else
                       echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
+                      echo "$fileName" >> $GITHUB_STEP_SUMMARY
+                      echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY
                 fi                
                 ;;
               AI_SERVICE_CONNECTOR)
                 if [[ $fileName == sc_* ]]
                 then
-                      echo "::notice file=$fileName,line=1,col=5,endColumn=7::Valid Name"
-                else
-                      echo "::error file=$fileName,line=1,col=5,endColumn=7::Inalid Name"
+                      echo "::notice file=$fileName,line=1,col=5,endColumn=7::Invalid Name"
+                      echo "$fileName" >> $GITHUB_STEP_SUMMARY
+                      echo "- Invalid Name!" >> $GITHUB_STEP_SUMMARY
                 fi
                 ;;
             esac
             echo "------------------------------------------"
             echo "" >> $GITHUB_STEP_SUMMARY
-            
+          done         
+
+      - name: Validate Description
+        run: |
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             content=$(grep types1:Description $file  | grep -v '<?xml' | grep '<types1:Description>'  | head -n 2 | awk 'NR==1 {print $1}' | cut -d'>' -f 2)
             if [ -z "$content" ]
             then
@@ -112,5 +113,5 @@ jobs:
                   echo "$file" >> $GITHUB_STEP_SUMMARY
                   echo "- Missing Description!" >> $GITHUB_STEP_SUMMARY
             fi
-          echo "" >> $GITHUB_STEP_SUMMARY            
-          done    
+          echo "" >> $GITHUB_STEP_SUMMARY
+          done        
