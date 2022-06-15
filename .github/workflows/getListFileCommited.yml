@@ -113,7 +113,6 @@ jobs:
                   echo "Descrição do arquivo $file : $content"
             fi
           done
-jobs:
   log-commands:
     runs-on: ubuntu-latest
     steps:
